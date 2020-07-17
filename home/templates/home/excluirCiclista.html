@@ -1,0 +1,19 @@
+{% extends 'home/base.html' %}
+{% load tempo_atual %}
+
+{% block content %}
+<div>
+    <form method="post">
+        {% csrf_token %}
+        <hr />
+        <div class="text-right">
+        <h3>Tem certeza que gostaria de excluir este ciclista?</h3>
+        <a href="{% url 'ciclistas' %}" class="btn btn-outline-primary">Cancelar</a>
+        <button class="btn-danger btn-outline-danger btn">Excluir</button>
+        </div>
+    </form>
+
+    <h4 class="excluicic"><b>Ciclista:</b> {{ciclista}}</h4>
+
+</div>
+{% endblock %}

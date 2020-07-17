@@ -1,0 +1,109 @@
+h1 {
+    color: #000000;
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: center;
+    font-family: 'roboto';
+}
+
+h2, h3, h4, h5 {
+	color: black;
+}
+
+td a {
+	color: inherit;
+} 
+
+b {
+    margin-top: 390px;
+}
+
+h5 {
+	text-align: center;
+	padding-bottom: 10px;
+}
+
+.entdesc {
+	font-size: 20px;
+	padding-top: 40px;
+}
+
+.margem {
+    padding: 50px;
+    background-color: #232323;
+}
+
+.container-fluid {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+}
+
+.btn {
+	margin-top: 10px;
+}
+
+.nav {
+    margin-top: 20px;
+}
+
+.nav-link {
+	padding: 15px;
+}
+
+.form {
+    margin-left: 50px;
+}
+
+textarea {
+	width: 60%;
+	height: 30%;
+	resize: none;
+}
+
+.aux {
+	margin-right: 7px;
+	float: right;
+}
+
+.detalheEntrega {
+	padding: 25px;
+}
+
+.detalheEntrega li {
+	padding-bottom: 5px;
+	font-size: 18px;
+}
+
+.modocic {
+	padding-bottom: 5px;
+	font-size: 17px;
+}
+
+.excluient {
+	padding: 30px;
+	font-size: 17px;
+	margin-left: 15px;
+}
+
+.excluient li {
+	padding-bottom: 5px;
+}
+
+.excluicic {
+	padding: 35px;
+}
+
+.cic {
+	margin-top: 3%;
+}
+
+.entregas {
+    text-align: center;
+}
+
+#map {
+    height: 400px;
+    width: 100%;
+    margin-top: 50px;
+    margin-right: 50px;
+}

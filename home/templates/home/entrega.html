@@ -1,0 +1,108 @@
+{% load staticfiles %}
+{% load tempo_atual %}
+{% load material_form %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <title>Entrega {{entrega}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    <!-- css files -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    {% include 'material/includes/material_css.html' %}
+    <script src="{% static 'material/js/jquery.js' %}"></script>
+    {% include 'material/includes/material_js.html' %}
+    <!-- bootstrap -->
+</head>
+<body>
+    <div class="container-fluid">
+         <div class="row">
+          <div class="col-md-2 bg-light">
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+              <a class="nav-link active" href="#" role="tab" aria-controls="v-pills-home" aria-selected="true">Início</a>
+              <a class="nav-link" href="{% url 'ciclistas' %}" role="tab" aria-controls="v-pills-ciclistas" aria-selected="false">Ciclistas</a>
+              <a class="nav-link" href="{% url 'entregas' %}"  role="tab" aria-controls="v-pills-entregas" aria-selected="false">Entregas</a>
+              <a class="nav-link" href="#" role="tab" aria-controls="v-pills-login" aria-selected="false">Logout</a>
+                <br>
+                <b>Hora: {% tempo_atual %}</b>
+            </div>
+          </div>
+             <div class="col-md-5">
+                 <div class="detalheEntrega">
+         <h5><b>Informações da entrega</b></h5>
+         <br>
+         {% if entrega.ciclista != None %}
+         <ul>
+            <li><b>Ciclista:</b> {{entrega.ciclista}}</li>
+            <li><b>Endereço de coleta:</b> {{entrega.end_coleta}}</li>
+            <li><b>Endereço de entrega:</b> {{entrega.end_entrega}}</li>
+            <li><b>Descrição de entrega:</b> {{entrega.desc}}</li>
+            <li><b>Data de criação da entrega:</b> {{entrega.data|date:"d/m/Y"}}</li>
+            <li><b>Tempo de execução:</b> </li>
+         </ul>
+         {% else %}
+         <ul>
+            <li><b>Ciclista:</b> Nenhum</li>
+            <li><b>Endereço de coleta:</b> {{entrega.end_coleta}}</li>
+            <li><b>Endereço de entrega:</b> {{entrega.end_entrega}}</li>
+            <li><b>Descrição de entrega:</b> {{entrega.desc}}</li>
+            <li><b>Data de criação da entrega:</b> {{entrega.data|date:"d/m/Y"}}</li>
+            <li><b>Tempo de execução:</b> </li>
+         </ul>
+         {% endif %}
+     </div>
+
+             </div>
+              <div class="col-md-5 bg-light">
+                    <h1>Mapa de Entregas</h1>
+                    <div id="map"></div>
+                  <input type="button" id="routebtn" value="route" />
+                </div>
+         </div>
+    </div>
+
+
+
+<!-- <div class="col-md-5">
+         <div id="map-canvas"></div>
+         <input type="button" id="routebtn" value="Rota planejada" onclick = ";" />
+     </div> -->
+
+    <script type="text/javascript">
+	function myfunction(){
+		var map;
+		var swabi = new google.maps.LatLng(34.0718684,72.4731529);
+		var peshawar = new google.maps.LatLng(34.0151366,71.5249154);
+		var option ={
+			zoom : 10,
+			center : swabi
+		};
+		map = new google.maps.Map(document.getElementById('map'),option);
+		var display = new google.maps.DirectionsRenderer();
+		var services = new google.maps.DirectionsService();
+		display.setMap(map);
+		function calculateroute(){
+			var request ={
+				origin : swabi,
+				destination:peshawar,
+				travelMode: 'DRIVING'
+			};
+			services.route(request,function(result,status){
+				//console.log(result,status);
+				if(status =='OK'){
+					display.setDirections(result);
+				}
+			});
+		}
+		document.getElementById('getdirection').onclick= function(){
+			calculateroute();
+		}
+	}
+</script>
+<!-- google map api -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDmhhr_81wgfC0l_80i4nMxiDyZmlxwgI&libraries=places"></script>
+
+
+</body>
+</html>
